@@ -7,6 +7,16 @@ def get_city_set(data):
     return sorted({d.city for d in data})
 
 
+def read_file(file):
+    map = {}
+    with open(file) as f:
+        for line in f:
+            line = line.strip()
+            i, city = line.split(",")
+            map[city] = int(i)
+    return map
+
+
 if __name__ == '__main__':
     import argparse
 
