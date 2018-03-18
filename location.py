@@ -27,12 +27,53 @@ def to_y(long):
 
 
 class Location(object):
-    def __init__(self, x, y):
+    def __init__(self, x=None, y=None, lat=None, long=None, city=None):
         self.x = x
         self.y = y
-        self.lat = to_lat(x)
-        self.long = to_long(y)
-        self.city = api.get_city(self.lat, self.long)
+        self.lat = lat
+        self.long = long
+        self.city = city
+
+        self.__fill()
+
+    def __fill(self):
+        if self.x is not None:
+            if self.lat is None:
+                self.lat = to_lat(self.x)
+        elif self.lat is not None:
+            self.x = to_x(self.lat)
+        else:
+            raise ValueError('Provide x or lat')
+
+        if self.y is not None:
+            if self.long is None:
+                self.long = to_long(self.y)
+        elif self.long is not None:
+            self.y = to_y(self.long)
+        else:
+            raise ValueError('Provide y or long')
+
+        if self.city is None:
+            self.city = api.get_city(self.lat, self.long)
 
     def __str__(self):
         return f"{self.x},{self.y},{self.lat},{self.long},{self.city}"
+
+
+def read_line(line):
+    x, y, lat, long, city = line.split(",")
+    return Location(
+        float(x),
+        float(y),
+        float(lat),
+        float(long),
+        city
+    )
+
+
+def read_files(*files):
+    for file in files:
+        with open(file) as f:
+            for line in f:
+                line = line.strip()
+                yield read_line(line)
