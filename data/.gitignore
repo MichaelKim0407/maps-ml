@@ -1,5 +1,5 @@
-*.txt
-!data-*.txt
+*.csv
+!data-*.csv
 *.png
 *.pkl
-!test-*.txt
+!test-*.csv
