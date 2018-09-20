@@ -21,9 +21,18 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('output')
-    parser.add_argument('--binary')
-    parser.add_argument('data', nargs='+')
+    parser.add_argument(
+        'output',
+        help='Output file'
+    )
+    parser.add_argument(
+        '--binary',
+        help='Specify the city name if you want to run basic (binary) logical regression'
+    )
+    parser.add_argument(
+        'data', nargs='+',
+        help='Data file(s) to find city names from'
+    )
     args = parser.parse_args()
 
     cities = get_city_set(location.read_files(*args.data))

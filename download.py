@@ -14,8 +14,14 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('output')
-    parser.add_argument('count', type=int)
+    parser.add_argument(
+        'output',
+        help='Output file'
+    )
+    parser.add_argument(
+        'count', type=int,
+        help='Amount of data to download'
+    )
     args = parser.parse_args()
 
     with open(args.output, 'w') as f:
