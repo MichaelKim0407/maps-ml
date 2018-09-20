@@ -41,11 +41,11 @@ if __name__ == '__main__':
         if not args.binary:
             i = 0
             for city in cities:
-                f.write(f"{i},{city}\n")
+                f.write("{i},{city}\n".format(i=i, city=city))
                 i += 1
         else:
             for city in cities:
                 if city == args.binary:
-                    f.write(f"1,{city}\n")
+                    f.write("1,{city}\n".format(city=city))
                 else:
-                    f.write(f"0,{city}\n")
+                    f.write("0,{city}\n".format(city=city))

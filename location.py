@@ -57,7 +57,7 @@ class Location(object):
             self.city = api.get_city(self.lat, self.long)
 
     def __str__(self):
-        return f"{self.x},{self.y},{self.lat},{self.long},{self.city}"
+        return "{self.x},{self.y},{self.lat},{self.long},{self.city}".format(self=self)
 
 
 def read_line(line):
