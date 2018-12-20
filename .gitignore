@@ -1,6 +1,8 @@
 .idea/
+
 *.py[cod]
-__pycache__
+__pycache__/
+
 .DS_Store
 
-key.txt
+/key.txt
